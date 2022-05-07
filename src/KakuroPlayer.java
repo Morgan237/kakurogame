@@ -49,8 +49,14 @@ public class KakuroPlayer extends JFrame implements ActionListener {
         gamePanel = new JPanel();
         gamePanel.setLayout(new GridLayout(5,4));
 
+//        for(int i=0;i<greyLabels.length;i++){
+//            gamePanel.add(greyLabels[i]);
+//            greyLabels[i].setBorder(BorderFactory.createLineBorder(Color.black,1));
+//            greyLabels[i].setHorizontalAlignment(JLabel.CENTER);
+//            greyLabels[i].setVerticalAlignment(JLabel.CENTER);
+//        }
 
-
+        this.add(gamePanel);
         this.setVisible(true);
     }
 
