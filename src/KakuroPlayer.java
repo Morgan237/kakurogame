@@ -139,6 +139,7 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
         this.setVisible(true);
     }
 //------------------------------------------ACTION PERFORME METHOD--------------------------------------------------
+//    Methode pour verifirer que la solution proposee est correcte
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == checker){
@@ -152,23 +153,23 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
     public void focusGained(FocusEvent e) {
 
     }
-
+//----------------------VERIFIER LES CONDITIONS POUR LES VALEURS ENTRER-------------------------------------
     @Override
     public void focusLost(FocusEvent e) {
         if(e.getSource() == field1){
             try{
                 int field1Value = Integer.parseInt(field1.getText());
                 if(field1Value > 9){
-                    JOptionPane.showMessageDialog(null,"This value cannot be greatter than 9");
+                    JOptionPane.showMessageDialog(null,"Cette valeur ne peut pas etre superieure au chiffre 9");
                     field1.requestFocus();
 
                 } else if(Integer.toString(field1Value).equals(field2.getText())){
-                    JOptionPane.showMessageDialog(null,"Two adjacent fields cannot have thesame value");
+                    JOptionPane.showMessageDialog(null,"Deux cases sur la meme rangee ne peuvent avoir la meme valeur");
                     field1.requestFocus();
                 }
             }catch (NumberFormatException ex){
                 System.out.println("Error : " + ex);
-                JOptionPane.showMessageDialog(this,"La valeur de cases ne peuvent etre que des nombres","Erreur",JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null,"La valeur de cases ne peuvent etre que des nombres","Erreur",JOptionPane.ERROR_MESSAGE);
                 field1.requestFocus();
             } catch (Exception ex){
                 System.out.println("Error : " + ex);
@@ -178,16 +179,16 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
             try{
                 int field2Value = Integer.parseInt(field2.getText());
                 if(field2Value > 9){
-                    JOptionPane.showMessageDialog(null,"This value cannot be greatter than 9");
+                    JOptionPane.showMessageDialog(null,"Cette valeur ne peut pas etre superieure au chiffre 9");
                     field2.requestFocus();
 
                 } else if(Integer.toString(field2Value).equals(field1.getText())){
-                    JOptionPane.showMessageDialog(null,"Two adjacent fields cannot have thesame value");
+                    JOptionPane.showMessageDialog(null,"Deux cases sur la meme rangee ne peuvent avoir la meme valeur");
                     field2.requestFocus();
                 }
             }catch (NumberFormatException ex){
                 System.out.println("Error : " + ex);
-                JOptionPane.showMessageDialog(this,"La valeur de cases ne peuvent etre que des nombres","Erreur",JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null,"La valeur de cases ne peuvent etre que des nombres","Erreur",JOptionPane.ERROR_MESSAGE);
                 field2.requestFocus();
             } catch (Exception ex){
                 System.out.println("Error : " + ex);
@@ -197,16 +198,16 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
             try{
                 int field3Value = Integer.parseInt(field3.getText());
                 if(field3Value > 9){
-                    JOptionPane.showMessageDialog(null,"This value cannot be greatter than 9");
+                    JOptionPane.showMessageDialog(null,"Cette valeur ne peut pas etre superieure au chiffre 9");
                     field3.requestFocus();
 
                 } else if(Integer.toString(field3Value).equals(hintLabel1.getText())){
-                    JOptionPane.showMessageDialog(null,"Two adjacent fields cannot have thesame value");
+                    JOptionPane.showMessageDialog(null,"Deux cases sur la meme rangee ne peuvent avoir la meme valeur");
                     field3.requestFocus();
                 }
             }catch (NumberFormatException ex){
                 System.out.println("Error : " + ex);
-                JOptionPane.showMessageDialog(this,"La valeur de cases ne peuvent etre que des nombres","Erreur",JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null,"La valeur de cases ne peuvent etre que des nombres","Erreur",JOptionPane.ERROR_MESSAGE);
                 field3.requestFocus();
             } catch (Exception ex){
                 System.out.println("Error : " + ex);
@@ -216,16 +217,16 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
             try{
                 int field4Value = Integer.parseInt(field4.getText());
                 if(field4Value > 9){
-                    JOptionPane.showMessageDialog(null,"This value cannot be greatter than 9");
+                    JOptionPane.showMessageDialog(null,"Cette valeur ne peut pas etre superieure au chiffre 9");
                     field4.requestFocus();
 
                 } else if(Integer.toString(field4Value).equals(field5.getText()) || Integer.toString(field4Value).equals(hintLabel2.getText())){
-                    JOptionPane.showMessageDialog(null,"Adjacent fields cannot have thesame value");
+                    JOptionPane.showMessageDialog(null,"Deux cases sur la meme rangee ne peuvent avoir la meme valeur");
                     field4.requestFocus();
                 }
             }catch (NumberFormatException ex){
                 System.out.println("Error : " + ex);
-                JOptionPane.showMessageDialog(this,"La valeur de cases ne peuvent etre que des nombres","Erreur",JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null,"La valeur de cases ne peuvent etre que des nombres","Erreur",JOptionPane.ERROR_MESSAGE);
                 field4.requestFocus();
             } catch (Exception ex){
                 System.out.println("Error : " + ex);
@@ -235,16 +236,16 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
             try{
                 int field5Value = Integer.parseInt(field5.getText());
                 if(field5Value > 9){
-                    JOptionPane.showMessageDialog(null,"This value cannot be greatter than 9");
+                    JOptionPane.showMessageDialog(null,"Cette valeur ne peut pas etre superieure au chiffre 9");
                     field5.requestFocus();
 
                 } else if(Integer.toString(field5Value).equals(field4.getText()) || Integer.toString(field5Value).equals(hintLabel2.getText())){
-                    JOptionPane.showMessageDialog(null,"Adjacent fields cannot have thesame value");
+                    JOptionPane.showMessageDialog(null,"Deux cases sur la meme rangee ne peuvent avoir la meme valeur");
                     field5.requestFocus();
                 }
             }catch (NumberFormatException ex){
                 System.out.println("Error : " + ex);
-                JOptionPane.showMessageDialog(this,"La valeur de cases ne peuvent etre que des nombres","Erreur",JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null,"La valeur de cases ne peuvent etre que des nombres","Erreur",JOptionPane.ERROR_MESSAGE);
                 field5.requestFocus();
             } catch (Exception ex){
                 System.out.println("Error : " + ex);
@@ -254,16 +255,16 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
             try{
                 int field6Value = Integer.parseInt(field6.getText());
                 if(field6Value > 9){
-                    JOptionPane.showMessageDialog(null,"This value cannot be greatter than 9");
+                    JOptionPane.showMessageDialog(null,"Cette valeur ne peut pas etre superieure au chiffre 9");
                     field6.requestFocus();
 
                 } else if(Integer.toString(field6Value).equals(field7.getText())){
-                    JOptionPane.showMessageDialog(null,"Two adjacent fields cannot have thesame value");
+                    JOptionPane.showMessageDialog(null,"Deux cases sur la meme rangee ne peuvent avoir la meme valeur");
                     field6.requestFocus();
                 }
             }catch (NumberFormatException ex){
                 System.out.println("Error : " + ex);
-                JOptionPane.showMessageDialog(this,"La valeur de cases ne peuvent etre que des nombres","Erreur",JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null,"La valeur de cases ne peuvent etre que des nombres","Erreur",JOptionPane.ERROR_MESSAGE);
                 field6.requestFocus();
             } catch (Exception ex){
                 System.out.println("Error : " + ex);
@@ -273,16 +274,16 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
             try{
                 int field7Value = Integer.parseInt(field7.getText());
                 if(field7Value > 9){
-                    JOptionPane.showMessageDialog(null,"This value cannot be greatter than 9");
+                    JOptionPane.showMessageDialog(null,"Cette valeur ne peut pas etre superieure au chiffre 9");
                     field7.requestFocus();
 
                 } else if(Integer.toString(field7Value).equals(field6.getText())){
-                    JOptionPane.showMessageDialog(null,"Two adjacent fields cannot have thesame value");
+                    JOptionPane.showMessageDialog(null,"Deux cases sur la meme rangee ne peuvent avoir la meme valeur");
                     field7.requestFocus();
                 }
             }catch (NumberFormatException ex){
                 System.out.println("Error : " + ex);
-                JOptionPane.showMessageDialog(this,"La valeur de cases ne peuvent etre que des nombres","Erreur",JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null,"La valeur de cases ne peuvent etre que des nombres","Erreur",JOptionPane.ERROR_MESSAGE);
                 field7.requestFocus();
             } catch (Exception ex){
                 System.out.println("Error : " + ex);
