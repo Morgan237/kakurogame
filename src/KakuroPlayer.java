@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.util.InputMismatchException;
 
 public class KakuroPlayer extends JFrame implements ActionListener, FocusListener {
 
@@ -139,7 +140,9 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        if(e.getSource() == checker){
+            check();
+        }
     }
 
     @Override
@@ -149,6 +152,42 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
 
     @Override
     public void focusLost(FocusEvent e) {
+        if(e.getSource() == field1){
+            try{
+                int field1Value = Integer.parseInt(field1.getText());
+                if(field1Value > 9){
+                    JOptionPane.showMessageDialog(null,"This value cannot be greatter than 9");
+                    field1.requestFocus();
+
+                } else if(Integer.toString(field1Value).equals(field2.getText())){
+                    JOptionPane.showMessageDialog(null,"Two adjacent fields cannot have thesame value");
+                    field1.requestFocus();
+                }
+            }catch (InputMismatchException ex){
+                System.out.println("Error : " + ex);
+            } catch (Exception ex){
+                System.out.println("Error : " + ex);
+            }
+        } else if(e.getSource() == field2){
+            try{
+                int field2Value = Integer.parseInt(field2.getText());
+                if(field2Value > 9){
+                    JOptionPane.showMessageDialog(null,"This value cannot be greatter than 9");
+                    field2.requestFocus();
+
+                } else if(Integer.toString(field2Value).equals(field1.getText())){
+                    JOptionPane.showMessageDialog(null,"Two adjacent fields cannot have thesame value");
+                    field2.requestFocus();
+                }
+            }catch (InputMismatchException ex){
+                System.out.println("Error : " + ex);
+            } catch (Exception ex){
+                System.out.println("Error : " + ex);
+            }
+        }
+    }
+
+    public void check(){
 
     }
 }
