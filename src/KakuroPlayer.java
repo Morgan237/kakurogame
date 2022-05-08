@@ -44,6 +44,8 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
 
     JLabel[] hintLabels = {hintLabel1,hintLabel2};
 
+    boolean reponse = false;
+
     JTextField[] textFields = {field1,field2,field3,field4,field5,field6,field7};
     Font font = new Font("Verdana",Font.BOLD,15);
     Game[] games = new Game[10];
@@ -154,6 +156,38 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
 
         } else if(e.getSource() == solutionItem){
 //            ----------AFFICHER LA SOLUTION----------
+            if(reponse == false){
+                reponse = true;
+                solutionItem.setText("Cacher les reponses");
+                for(int i=0;i<textFields.length;i++){
+                    textFields[i].setFont(new Font("Verdana",Font.BOLD,30));
+                    textFields[i].setHorizontalAlignment(JTextField.CENTER);
+                    textFields[i].setBorder(BorderFactory.createLineBorder(Color.lightGray));
+//                    textFields[i].addFocusListener(this);
+                    textFields[i].setForeground(Color.green);
+                    textFields[i].setFocusable(false);
+                }
+                field1.setText(String.valueOf(game1.res1));
+                field2.setText(String.valueOf(game1.res2));
+                field3.setText(String.valueOf(game1.res3));
+                field4.setText(String.valueOf(game1.res4));
+                field5.setText(String.valueOf(game1.res5));
+                field6.setText(String.valueOf(game1.res6));
+                field7.setText(String.valueOf(game1.res7));
+            } else {
+                reponse = false;
+                solutionItem.setText("Montrer les reponses");
+                for(int i=0;i<textFields.length;i++){
+                    textFields[i].setFont(new Font("Verdana",Font.BOLD,30));
+                    textFields[i].setHorizontalAlignment(JTextField.CENTER);
+                    textFields[i].setBorder(BorderFactory.createLineBorder(Color.lightGray));
+//                    textFields[i].addFocusListener(this);
+                    textFields[i].setForeground(Color.black);
+                    textFields[i].setFocusable(true);
+                    textFields[i].setText("");
+                }
+
+            }
         }
     }
 
@@ -176,9 +210,11 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
                     field1.requestFocus();
                 }
             }catch (NumberFormatException ex){
-                System.out.println("Error : " + ex);
-                JOptionPane.showMessageDialog(null,"La valeur de cases ne peuvent etre que des nombres","Erreur",JOptionPane.ERROR_MESSAGE);
-                field1.requestFocus();
+                if(!field1.getText().isEmpty()){
+                    System.out.println("Error : " + ex);
+                    JOptionPane.showMessageDialog(null,"La valeur de cases ne peuvent etre que des nombres","Erreur",JOptionPane.ERROR_MESSAGE);
+                    field1.requestFocus();
+                }
             } catch (Exception ex){
                 System.out.println("Error : " + ex);
             }
