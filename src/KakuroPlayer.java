@@ -2,8 +2,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
-public class KakuroPlayer extends JFrame implements ActionListener {
+public class KakuroPlayer extends JFrame implements ActionListener, FocusListener {
 
     JLabel greyLabel1 = new JLabel("---");
     JLabel greyLabel2 = new JLabel("---");
@@ -29,6 +31,9 @@ public class KakuroPlayer extends JFrame implements ActionListener {
     JTextField field7 = new JTextField();
 
     JMenuBar menuBar;
+    JMenu fileMenu;
+    JMenuItem checker;
+
     JPanel gamePanel;
 
     JLabel[] greyLabels = {greyLabel1,greyLabel2,greyLabel3,greyLabel4,greyLabel5,greyLabel6,
@@ -57,12 +62,12 @@ public class KakuroPlayer extends JFrame implements ActionListener {
 
         Games games1 = new Games();
 
-        String[] arr = games1.initSetter("25\\ ","2\\ ","5\\8"," \\11","5\\ "," \\15"," \\3",8,2);
+        String[] arr = games1.initSetter("25\\--","2\\--","5\\8","--\\11","5\\--","--\\15","--\\3",8,2);
         for(int i=0;i<greyLabels.length;i++){
             greyLabels[i].setForeground(Color.white);
             greyLabels[i].setBackground(Color.black);
             greyLabels[i].setOpaque(true);
-            greyLabels[i].setBorder(BorderFactory.createLineBorder(Color.black,1));
+            greyLabels[i].setBorder(BorderFactory.createLineBorder(Color.white,1));
             greyLabels[i].setHorizontalAlignment(JLabel.CENTER);
             greyLabels[i].setVerticalAlignment(JLabel.CENTER);
             greyLabels[i].setFont(new Font("Verdana",Font.BOLD,30));
@@ -73,6 +78,7 @@ public class KakuroPlayer extends JFrame implements ActionListener {
             hintLabels[i].setForeground(Color.black);
             hintLabels[i].setBackground(Color.darkGray);
             hintLabels[i].setOpaque(true);
+            hintLabels[i].setBorder(BorderFactory.createLineBorder(Color.white));
             hintLabels[i].setHorizontalAlignment(JLabel.CENTER);
             hintLabels[i].setVerticalAlignment(JLabel.CENTER);
             hintLabels[i].setFont(new Font("Verdana",Font.BOLD,30));
@@ -81,6 +87,8 @@ public class KakuroPlayer extends JFrame implements ActionListener {
         for(int i=0;i<textFields.length;i++){
             textFields[i].setFont(new Font("Verdana",Font.BOLD,30));
             textFields[i].setHorizontalAlignment(JTextField.CENTER);
+            textFields[i].setBorder(BorderFactory.createLineBorder(Color.lightGray));
+            textFields[i].addFocusListener(this);
         }
 
         greyLabel3.setText(arr[0]);
@@ -114,19 +122,33 @@ public class KakuroPlayer extends JFrame implements ActionListener {
         gamePanel.add(field6);
         gamePanel.add(field7);
 
+        menuBar = new JMenuBar();
+        fileMenu = new JMenu("File");
+        checker = new JMenuItem("Check");
+        checker.addActionListener(this);
 
 
 
 
-
-
-
+        menuBar.add(fileMenu);
+        fileMenu.add(checker);
+        this.setJMenuBar(menuBar);
         this.add(gamePanel);
         this.setVisible(true);
     }
 
     @Override
-    public void actionPerformed(ActionEvent actionEvent) {
+    public void actionPerformed(ActionEvent e) {
+
+    }
+
+    @Override
+    public void focusGained(FocusEvent e) {
+
+    }
+
+    @Override
+    public void focusLost(FocusEvent e) {
 
     }
 }
