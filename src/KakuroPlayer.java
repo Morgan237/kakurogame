@@ -8,6 +8,7 @@ import java.util.InputMismatchException;
 
 public class KakuroPlayer extends JFrame implements ActionListener, FocusListener {
 
+//    Les greyLabels seront les cases non modifiables
     JLabel greyLabel1 = new JLabel("");
     JLabel greyLabel2 = new JLabel("");
     JLabel greyLabel3 = new JLabel("---");
@@ -20,9 +21,11 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
     JLabel greyLabel10 = new JLabel("");
     JLabel greyLabel11 = new JLabel("---");
 
+//    Les hintLabel seront les cases non modifiables qui donnerons des indices a comment completer le puzzle
     JLabel hintLabel1 = new JLabel();
     JLabel hintLabel2 = new JLabel();
 
+//    Les field seront les cases JTextField modifiables ou le joueur inserera ses reponses
     JTextField field1 = new JTextField();
     JTextField field2 = new JTextField();
     JTextField field3 = new JTextField();
@@ -31,6 +34,7 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
     JTextField field6 = new JTextField();
     JTextField field7 = new JTextField();
 
+//    La barre de menu au dessus
     JMenuBar menuBar;
     JMenu fileMenu;
     JMenuItem checker;
@@ -39,32 +43,40 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
 
     JPanel gamePanel;
 
+//    Un tableau pour contenir tout les greyLabels pour pouvoir facilement iterer entre eux
     JLabel[] greyLabels = {greyLabel1,greyLabel2,greyLabel3,greyLabel4,greyLabel5,greyLabel6,
             greyLabel7,greyLabel8,greyLabel9,greyLabel10,greyLabel11};
 
+    //    Un tableau pour contenir tout les hintLabel pour pouvoir facilement iterer entre eux
     JLabel[] hintLabels = {hintLabel1,hintLabel2};
 
+//    boolean pour savoir si les reponses sont actuellement entrain d'etre montrer par le program
     boolean reponse = false;
 
+    //    Un tableau pour contenir tout les textfields pour pouvoir facilement iterer entre eux
     JTextField[] textFields = {field1,field2,field3,field4,field5,field6,field7};
     Font font = new Font("Verdana",Font.BOLD,15);
     Game[] games = new Game[10];
     Game game1 = new Game();
 
 //    ----------------------------------------- CONSTRUCTOR -----------------------------------------------------------------
+//    Creation de la fenetre
     public KakuroPlayer(){
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("Kakuro Game");
-        this.setSize(350,400);
+        this.setSize(450,500);
         this.setLocationRelativeTo(null);
 
-        gamePanel = new JPanel();
-        gamePanel.setLayout(new GridLayout(5,4));
+        gamePanel = new JPanel(); // Un JPanel pour retenir toutes les cases
+        gamePanel.setLayout(new GridLayout(5,4)); //Un gridLayout sur le JPanel pour donner la forme
 
+//        Des instances de la classe game qui contient toutes le informations pour une partie donnee
         game1.makeGame("25\\--","2\\--","5\\8","--\\11","5\\--","--\\15","--\\3",
                 8,2,6,2,3,9,4,2,1);
 
         for(int i=0;i<greyLabels.length;i++){
+//            Bien formatter les greyLabels(Les cases non modifiables)
+
             greyLabels[i].setForeground(Color.white);
             greyLabels[i].setBackground(Color.black);
             greyLabels[i].setOpaque(true);
@@ -76,6 +88,8 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
         }
 
         for(int i=0;i<hintLabels.length;i++){
+//            Bien formatter les hintLabels(Les cases d'indice non modifiable)
+
             hintLabels[i].setForeground(Color.black);
             hintLabels[i].setBackground(Color.darkGray);
             hintLabels[i].setOpaque(true);
@@ -86,12 +100,14 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
         }
 
         for(int i=0;i<textFields.length;i++){
+//            Bien formatter les textFields, qui sont les cases modifiables ou les reponses seront insererer
             textFields[i].setFont(new Font("Verdana",Font.BOLD,30));
             textFields[i].setHorizontalAlignment(JTextField.CENTER);
             textFields[i].setBorder(BorderFactory.createLineBorder(Color.lightGray));
             textFields[i].addFocusListener(this);
         }
 
+        //Ajouter toutes les cases dans le JPanel gamePanel dans l'order suivant:
 
         greyLabel3.setText(game1.g3);
         greyLabel4.setText(game1.g4);
@@ -354,13 +370,10 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
             && Integer.parseInt(field5.getText()) == game1.res5 && Integer.parseInt(field6.getText()) == game1.res6
             && Integer.parseInt(field7.getText()) == game1.res7){
 
-            JOptionPane.showMessageDialog(null,"Congratulations! You won.","Success",JOptionPane.INFORMATION_MESSAGE);
-        } else if(field1.getText().isEmpty() || field2.getText().isEmpty() || field3.getText().isEmpty() || field4.getText().isEmpty()
-                    || field5.getText().isEmpty() || field6.getText().isEmpty() || field7.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null,"Veuillez remplir toutes les cases","Solution incomplete",JOptionPane.WARNING_MESSAGE);
-        }
-        else {
-            JOptionPane.showMessageDialog(this,"Too bad! The solution is incorrect.\n Try again.","Try again",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Felicitations! Vous avez ganer.","Success",JOptionPane.INFORMATION_MESSAGE);
+
+        } else {
+            JOptionPane.showMessageDialog(this,"Dommage!La solution est fausse.\n Essayez encore","Essayez encore",JOptionPane.ERROR_MESSAGE);
         }
     }
 }
