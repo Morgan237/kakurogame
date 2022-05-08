@@ -46,6 +46,7 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
     Font font = new Font("Verdana",Font.BOLD,15);
     Gamer[] games = new Gamer[10];
 
+//    ------------- CONSTRUCTOR ------------------
     public KakuroPlayer(){
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("Kakuro Game");
@@ -55,10 +56,6 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
         gamePanel = new JPanel();
         gamePanel.setLayout(new GridLayout(5,4));
 
-//        for(int i=0;i<greyLabels.length;i++){
-//            gamePanel.add(greyLabels[i]);
-//
-//        }
 
         Games games1 = new Games();
         Gamer game = new Gamer();
