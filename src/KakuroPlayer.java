@@ -166,11 +166,14 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
                     JOptionPane.showMessageDialog(null,"Two adjacent fields cannot have thesame value");
                     field1.requestFocus();
                 }
-            }catch (InputMismatchException ex){
+            }catch (NumberFormatException ex){
                 System.out.println("Error : " + ex);
+                JOptionPane.showMessageDialog(this,"La valeur de cases ne peuvent etre que des nombres","Erreur",JOptionPane.ERROR_MESSAGE);
+                field1.requestFocus();
             } catch (Exception ex){
                 System.out.println("Error : " + ex);
             }
+
         } else if(e.getSource() == field2){
             try{
                 int field2Value = Integer.parseInt(field2.getText());
@@ -182,11 +185,14 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
                     JOptionPane.showMessageDialog(null,"Two adjacent fields cannot have thesame value");
                     field2.requestFocus();
                 }
-            }catch (InputMismatchException ex){
+            }catch (NumberFormatException ex){
                 System.out.println("Error : " + ex);
+                JOptionPane.showMessageDialog(this,"La valeur de cases ne peuvent etre que des nombres","Erreur",JOptionPane.ERROR_MESSAGE);
+                field2.requestFocus();
             } catch (Exception ex){
                 System.out.println("Error : " + ex);
             }
+
         } else if(e.getSource() == field3){
             try{
                 int field3Value = Integer.parseInt(field3.getText());
@@ -198,11 +204,14 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
                     JOptionPane.showMessageDialog(null,"Two adjacent fields cannot have thesame value");
                     field3.requestFocus();
                 }
-            }catch (InputMismatchException ex){
+            }catch (NumberFormatException ex){
                 System.out.println("Error : " + ex);
+                JOptionPane.showMessageDialog(this,"La valeur de cases ne peuvent etre que des nombres","Erreur",JOptionPane.ERROR_MESSAGE);
+                field3.requestFocus();
             } catch (Exception ex){
                 System.out.println("Error : " + ex);
             }
+
         } else if(e.getSource() == field4){
             try{
                 int field4Value = Integer.parseInt(field4.getText());
@@ -214,11 +223,14 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
                     JOptionPane.showMessageDialog(null,"Adjacent fields cannot have thesame value");
                     field4.requestFocus();
                 }
-            }catch (InputMismatchException ex){
+            }catch (NumberFormatException ex){
                 System.out.println("Error : " + ex);
+                JOptionPane.showMessageDialog(this,"La valeur de cases ne peuvent etre que des nombres","Erreur",JOptionPane.ERROR_MESSAGE);
+                field4.requestFocus();
             } catch (Exception ex){
                 System.out.println("Error : " + ex);
             }
+
         } else if(e.getSource() == field5){
             try{
                 int field5Value = Integer.parseInt(field5.getText());
@@ -230,11 +242,14 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
                     JOptionPane.showMessageDialog(null,"Adjacent fields cannot have thesame value");
                     field5.requestFocus();
                 }
-            }catch (InputMismatchException ex){
+            }catch (NumberFormatException ex){
                 System.out.println("Error : " + ex);
+                JOptionPane.showMessageDialog(this,"La valeur de cases ne peuvent etre que des nombres","Erreur",JOptionPane.ERROR_MESSAGE);
+                field5.requestFocus();
             } catch (Exception ex){
                 System.out.println("Error : " + ex);
             }
+
         } else if(e.getSource() == field6){
             try{
                 int field6Value = Integer.parseInt(field6.getText());
@@ -246,11 +261,14 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
                     JOptionPane.showMessageDialog(null,"Two adjacent fields cannot have thesame value");
                     field6.requestFocus();
                 }
-            }catch (InputMismatchException ex){
+            }catch (NumberFormatException ex){
                 System.out.println("Error : " + ex);
+                JOptionPane.showMessageDialog(this,"La valeur de cases ne peuvent etre que des nombres","Erreur",JOptionPane.ERROR_MESSAGE);
+                field6.requestFocus();
             } catch (Exception ex){
                 System.out.println("Error : " + ex);
             }
+
         } else if(e.getSource() == field7){
             try{
                 int field7Value = Integer.parseInt(field7.getText());
@@ -262,8 +280,10 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
                     JOptionPane.showMessageDialog(null,"Two adjacent fields cannot have thesame value");
                     field7.requestFocus();
                 }
-            }catch (InputMismatchException ex){
+            }catch (NumberFormatException ex){
                 System.out.println("Error : " + ex);
+                JOptionPane.showMessageDialog(this,"La valeur de cases ne peuvent etre que des nombres","Erreur",JOptionPane.ERROR_MESSAGE);
+                field7.requestFocus();
             } catch (Exception ex){
                 System.out.println("Error : " + ex);
             }
