@@ -35,6 +35,7 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
     JMenu fileMenu;
     JMenuItem checker;
     JMenuItem newGame;
+    JMenuItem solutionItem;
 
     JPanel gamePanel;
 
@@ -122,30 +123,37 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
         gamePanel.add(field7);
 
         menuBar = new JMenuBar();
-        fileMenu = new JMenu("File");
-        checker = new JMenuItem("Check");
+        fileMenu = new JMenu("Fichier");
+        checker = new JMenuItem("Verifier la solution");
         checker.addActionListener(this);
-        newGame = new JMenuItem("New Game");
+        newGame = new JMenuItem("Nouvelle Partie");
         newGame.addActionListener(this);
+        solutionItem = new JMenuItem("Montrer la solution");
+        solutionItem.addActionListener(this);
 
 
 
 
         menuBar.add(fileMenu);
-        fileMenu.add(newGame);
         fileMenu.add(checker);
+        fileMenu.add(solutionItem);
+        fileMenu.add(newGame);
         this.setJMenuBar(menuBar);
         this.add(gamePanel);
         this.setVisible(true);
     }
-//------------------------------------------ACTION PERFORME METHOD--------------------------------------------------
+//------------------------------------------ACTION PERFORMED METHOD--------------------------------------------------
 //    Methode pour verifirer que la solution proposee est correcte
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == checker){
+//            -----------VERIFIER LA SOLUTION PROPOSEE---------
             check();
         } else if(e.getSource() == newGame){
+//            ------JOUER UNE AUTRE PARTIE------
 
+        } else if(e.getSource() == solutionItem){
+//            ----------AFFICHER LA SOLUTION----------
         }
     }
 
