@@ -34,6 +34,7 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
     JMenuBar menuBar;
     JMenu fileMenu;
     JMenuItem checker;
+    JMenuItem newGame;
 
     JPanel gamePanel;
 
@@ -44,9 +45,10 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
 
     JTextField[] textFields = {field1,field2,field3,field4,field5,field6,field7};
     Font font = new Font("Verdana",Font.BOLD,15);
-    Gamer[] games = new Gamer[10];
+    Game[] games = new Game[10];
+    Game game1 = new Game();
 
-//    ------------- CONSTRUCTOR ------------------
+//    ----------------------------------------- CONSTRUCTOR -----------------------------------------------------------------
     public KakuroPlayer(){
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("Kakuro Game");
@@ -56,12 +58,8 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
         gamePanel = new JPanel();
         gamePanel.setLayout(new GridLayout(5,4));
 
-
-        Games games1 = new Games();
-        Gamer game = new Gamer();
-        game.makeGame("25\\--","2\\--","5\\8","--\\11","5\\--","--\\15","--\\3",8,2);
-
-//        String[] arr = games1.initSetter("25\\--","2\\--","5\\8","--\\11","5\\--","--\\15","--\\3",8,2);
+        game1.makeGame("25\\--","2\\--","5\\8","--\\11","5\\--","--\\15","--\\3",
+                8,2,6,2,3,9,4,2,1);
 
         for(int i=0;i<greyLabels.length;i++){
             greyLabels[i].setForeground(Color.white);
@@ -92,15 +90,15 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
         }
 
 
-        greyLabel3.setText(game.g3);
-        greyLabel4.setText(game.g4);
-        greyLabel6.setText(game.g6);
-        greyLabel7.setText(game.g7);
-        greyLabel8.setText(game.g8);
-        greyLabel9.setText(game.g9);
-        greyLabel11.setText(game.g11);
-        hintLabel1.setText(String.valueOf(game.h1));
-        hintLabel2.setText(String.valueOf(game.h2));
+        greyLabel3.setText(game1.g3);
+        greyLabel4.setText(game1.g4);
+        greyLabel6.setText(game1.g6);
+        greyLabel7.setText(game1.g7);
+        greyLabel8.setText(game1.g8);
+        greyLabel9.setText(game1.g9);
+        greyLabel11.setText(game1.g11);
+        hintLabel1.setText(String.valueOf(game1.h1));
+        hintLabel2.setText(String.valueOf(game1.h2));
 
         gamePanel.add(greyLabel1);
         gamePanel.add(greyLabel2);
@@ -127,21 +125,26 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
         fileMenu = new JMenu("File");
         checker = new JMenuItem("Check");
         checker.addActionListener(this);
+        newGame = new JMenuItem("New Game");
+        newGame.addActionListener(this);
 
 
 
 
         menuBar.add(fileMenu);
+        fileMenu.add(newGame);
         fileMenu.add(checker);
         this.setJMenuBar(menuBar);
         this.add(gamePanel);
         this.setVisible(true);
     }
-
+//------------------------------------------ACTION PERFORME METHOD--------------------------------------------------
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == checker){
             check();
+        } else if(e.getSource() == newGame){
+
         }
     }
 
@@ -255,7 +258,7 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
                     JOptionPane.showMessageDialog(null,"This value cannot be greatter than 9");
                     field7.requestFocus();
 
-                } else if(Integer.toString(field7Value).equals(field7.getText())){
+                } else if(Integer.toString(field7Value).equals(field6.getText())){
                     JOptionPane.showMessageDialog(null,"Two adjacent fields cannot have thesame value");
                     field7.requestFocus();
                 }
@@ -268,6 +271,14 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
     }
 
     public void check(){
+        if(Integer.parseInt(field1.getText()) == game1.res1 && Integer.parseInt(field2.getText()) == game1.res2
+            && Integer.parseInt(field3.getText()) == game1.res3 && Integer.parseInt(field4.getText()) == game1.res4
+            && Integer.parseInt(field5.getText()) == game1.res5 && Integer.parseInt(field6.getText()) == game1.res6
+            && Integer.parseInt(field7.getText()) == game1.res7){
 
+            JOptionPane.showMessageDialog(null,"Congratulations! You won.","Success",JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this,"Too bad! The solution is incorrect.\n Try again.","Try again",JOptionPane.ERROR_MESSAGE);
+        }
     }
 }
