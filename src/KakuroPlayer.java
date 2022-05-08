@@ -5,17 +5,17 @@ import java.awt.event.ActionListener;
 
 public class KakuroPlayer extends JFrame implements ActionListener {
 
-    JLabel greyLabel1 = new JLabel("##");
-    JLabel greyLabel2 = new JLabel("##");
-    JLabel greyLabel3 = new JLabel("##");
-    JLabel greyLabel4 = new JLabel("##");
-    JLabel greyLabel5 = new JLabel("##");
-    JLabel greyLabel6 = new JLabel("##");
-    JLabel greyLabel7 = new JLabel("##");
-    JLabel greyLabel8 = new JLabel("##");
-    JLabel greyLabel9 = new JLabel("##");
-    JLabel greyLabel10 = new JLabel("##");
-    JLabel greyLabel11 = new JLabel("##");
+    JLabel greyLabel1 = new JLabel("---");
+    JLabel greyLabel2 = new JLabel("---");
+    JLabel greyLabel3 = new JLabel("---");
+    JLabel greyLabel4 = new JLabel("---");
+    JLabel greyLabel5 = new JLabel("---");
+    JLabel greyLabel6 = new JLabel("---");
+    JLabel greyLabel7 = new JLabel("---");
+    JLabel greyLabel8 = new JLabel("---");
+    JLabel greyLabel9 = new JLabel("---");
+    JLabel greyLabel10 = new JLabel("---");
+    JLabel greyLabel11 = new JLabel("---");
 
     JLabel hintLabel1 = new JLabel();
     JLabel hintLabel2 = new JLabel();
@@ -52,9 +52,7 @@ public class KakuroPlayer extends JFrame implements ActionListener {
 
 //        for(int i=0;i<greyLabels.length;i++){
 //            gamePanel.add(greyLabels[i]);
-//            greyLabels[i].setBorder(BorderFactory.createLineBorder(Color.black,1));
-//            greyLabels[i].setHorizontalAlignment(JLabel.CENTER);
-//            greyLabels[i].setVerticalAlignment(JLabel.CENTER);
+//
 //        }
 
         Games games1 = new Games();
@@ -62,9 +60,29 @@ public class KakuroPlayer extends JFrame implements ActionListener {
         String[] arr = games1.initSetter("25\\ ","2\\ ","5\\8"," \\11","5\\ "," \\15"," \\3",8,2);
         for(int i=0;i<greyLabels.length;i++){
             greyLabels[i].setForeground(Color.white);
-            greyLabels[i].setBackground(Color.darkGray);
+            greyLabels[i].setBackground(Color.black);
+            greyLabels[i].setOpaque(true);
+            greyLabels[i].setBorder(BorderFactory.createLineBorder(Color.black,1));
+            greyLabels[i].setHorizontalAlignment(JLabel.CENTER);
+            greyLabels[i].setVerticalAlignment(JLabel.CENTER);
+            greyLabels[i].setFont(new Font("Verdana",Font.BOLD,30));
 
         }
+
+        for(int i=0;i<hintLabels.length;i++){
+            hintLabels[i].setForeground(Color.black);
+            hintLabels[i].setBackground(Color.darkGray);
+            hintLabels[i].setOpaque(true);
+            hintLabels[i].setHorizontalAlignment(JLabel.CENTER);
+            hintLabels[i].setVerticalAlignment(JLabel.CENTER);
+            hintLabels[i].setFont(new Font("Verdana",Font.BOLD,30));
+        }
+
+        for(int i=0;i<textFields.length;i++){
+            textFields[i].setFont(new Font("Verdana",Font.BOLD,30));
+            textFields[i].setHorizontalAlignment(JTextField.CENTER);
+        }
+
         greyLabel3.setText(arr[0]);
         greyLabel4.setText(arr[1]);
         greyLabel6.setText(arr[2]);
@@ -93,8 +111,8 @@ public class KakuroPlayer extends JFrame implements ActionListener {
         gamePanel.add(field5);
         gamePanel.add(greyLabel10);
         gamePanel.add(greyLabel11);
-        gamePanel.add(field5);
         gamePanel.add(field6);
+        gamePanel.add(field7);
 
 
 
