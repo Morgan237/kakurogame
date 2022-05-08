@@ -158,7 +158,7 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
 //            ----------AFFICHER LA SOLUTION----------
             if(reponse == false){
                 reponse = true;
-                solutionItem.setText("Cacher les reponses");
+                solutionItem.setText("Cacher la solution");
                 for(int i=0;i<textFields.length;i++){
                     textFields[i].setFont(new Font("Verdana",Font.BOLD,30));
                     textFields[i].setHorizontalAlignment(JTextField.CENTER);
@@ -231,9 +231,11 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
                     field2.requestFocus();
                 }
             }catch (NumberFormatException ex){
-                System.out.println("Error : " + ex);
-                JOptionPane.showMessageDialog(null,"La valeur de cases ne peuvent etre que des nombres","Erreur",JOptionPane.ERROR_MESSAGE);
-                field2.requestFocus();
+                if(!field2.getText().isEmpty()){
+                    System.out.println("Error : " + ex);
+                    JOptionPane.showMessageDialog(null,"La valeur de cases ne peuvent etre que des nombres","Erreur",JOptionPane.ERROR_MESSAGE);
+                    field2.requestFocus();
+                }
             } catch (Exception ex){
                 System.out.println("Error : " + ex);
             }
@@ -250,9 +252,11 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
                     field3.requestFocus();
                 }
             }catch (NumberFormatException ex){
-                System.out.println("Error : " + ex);
-                JOptionPane.showMessageDialog(null,"La valeur de cases ne peuvent etre que des nombres","Erreur",JOptionPane.ERROR_MESSAGE);
-                field3.requestFocus();
+                if(!field3.getText().isEmpty()){
+                    System.out.println("Error : " + ex);
+                    JOptionPane.showMessageDialog(null,"La valeur de cases ne peuvent etre que des nombres","Erreur",JOptionPane.ERROR_MESSAGE);
+                    field3.requestFocus();
+                }
             } catch (Exception ex){
                 System.out.println("Error : " + ex);
             }
@@ -269,9 +273,11 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
                     field4.requestFocus();
                 }
             }catch (NumberFormatException ex){
-                System.out.println("Error : " + ex);
-                JOptionPane.showMessageDialog(null,"La valeur de cases ne peuvent etre que des nombres","Erreur",JOptionPane.ERROR_MESSAGE);
-                field4.requestFocus();
+                if(!field4.getText().isEmpty()){
+                    System.out.println("Error : " + ex);
+                    JOptionPane.showMessageDialog(null,"La valeur de cases ne peuvent etre que des nombres","Erreur",JOptionPane.ERROR_MESSAGE);
+                    field4.requestFocus();
+                }
             } catch (Exception ex){
                 System.out.println("Error : " + ex);
             }
@@ -288,9 +294,11 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
                     field5.requestFocus();
                 }
             }catch (NumberFormatException ex){
-                System.out.println("Error : " + ex);
-                JOptionPane.showMessageDialog(null,"La valeur de cases ne peuvent etre que des nombres","Erreur",JOptionPane.ERROR_MESSAGE);
-                field5.requestFocus();
+                if(!field5.getText().isEmpty()){
+                    System.out.println("Error : " + ex);
+                    JOptionPane.showMessageDialog(null,"La valeur de cases ne peuvent etre que des nombres","Erreur",JOptionPane.ERROR_MESSAGE);
+                    field5.requestFocus();
+                }
             } catch (Exception ex){
                 System.out.println("Error : " + ex);
             }
@@ -307,9 +315,11 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
                     field6.requestFocus();
                 }
             }catch (NumberFormatException ex){
-                System.out.println("Error : " + ex);
-                JOptionPane.showMessageDialog(null,"La valeur de cases ne peuvent etre que des nombres","Erreur",JOptionPane.ERROR_MESSAGE);
-                field6.requestFocus();
+                if(!field6.getText().isEmpty()){
+                    System.out.println("Error : " + ex);
+                    JOptionPane.showMessageDialog(null,"La valeur de cases ne peuvent etre que des nombres","Erreur",JOptionPane.ERROR_MESSAGE);
+                    field6.requestFocus();
+                }
             } catch (Exception ex){
                 System.out.println("Error : " + ex);
             }
@@ -326,9 +336,11 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
                     field7.requestFocus();
                 }
             }catch (NumberFormatException ex){
-                System.out.println("Error : " + ex);
-                JOptionPane.showMessageDialog(null,"La valeur de cases ne peuvent etre que des nombres","Erreur",JOptionPane.ERROR_MESSAGE);
-                field7.requestFocus();
+                if(!field7.getText().isEmpty()){
+                    System.out.println("Error : " + ex);
+                    JOptionPane.showMessageDialog(null,"La valeur de cases ne peuvent etre que des nombres","Erreur",JOptionPane.ERROR_MESSAGE);
+                    field7.requestFocus();
+                }
             } catch (Exception ex){
                 System.out.println("Error : " + ex);
             }
@@ -336,13 +348,18 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
     }
 
     public void check(){
+//        --------METHODE POUR VERIFIER LA VALIDITE DE LA SOLUTION PROPOSEE---------------
         if(Integer.parseInt(field1.getText()) == game1.res1 && Integer.parseInt(field2.getText()) == game1.res2
             && Integer.parseInt(field3.getText()) == game1.res3 && Integer.parseInt(field4.getText()) == game1.res4
             && Integer.parseInt(field5.getText()) == game1.res5 && Integer.parseInt(field6.getText()) == game1.res6
             && Integer.parseInt(field7.getText()) == game1.res7){
 
             JOptionPane.showMessageDialog(null,"Congratulations! You won.","Success",JOptionPane.INFORMATION_MESSAGE);
-        } else {
+        } else if(field1.getText().isEmpty() || field2.getText().isEmpty() || field3.getText().isEmpty() || field4.getText().isEmpty()
+                    || field5.getText().isEmpty() || field6.getText().isEmpty() || field7.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Veuillez remplir toutes les cases","Solution incomplete",JOptionPane.WARNING_MESSAGE);
+        }
+        else {
             JOptionPane.showMessageDialog(this,"Too bad! The solution is incorrect.\n Try again.","Try again",JOptionPane.ERROR_MESSAGE);
         }
     }
