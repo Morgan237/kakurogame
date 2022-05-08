@@ -44,8 +44,7 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
 
     JTextField[] textFields = {field1,field2,field3,field4,field5,field6,field7};
     Font font = new Font("Verdana",Font.BOLD,15);
-    Games[] games = new Games[10];
-
+    Gamer[] games = new Gamer[10];
 
     public KakuroPlayer(){
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -62,8 +61,11 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
 //        }
 
         Games games1 = new Games();
+        Gamer game = new Gamer();
+        game.makeGame("25\\--","2\\--","5\\8","--\\11","5\\--","--\\15","--\\3",8,2);
 
-        String[] arr = games1.initSetter("25\\--","2\\--","5\\8","--\\11","5\\--","--\\15","--\\3",8,2);
+//        String[] arr = games1.initSetter("25\\--","2\\--","5\\8","--\\11","5\\--","--\\15","--\\3",8,2);
+
         for(int i=0;i<greyLabels.length;i++){
             greyLabels[i].setForeground(Color.white);
             greyLabels[i].setBackground(Color.black);
@@ -92,15 +94,16 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
             textFields[i].addFocusListener(this);
         }
 
-        greyLabel3.setText(arr[0]);
-        greyLabel4.setText(arr[1]);
-        greyLabel6.setText(arr[2]);
-        greyLabel7.setText(arr[3]);
-        greyLabel8.setText(arr[4]);
-        greyLabel9.setText(arr[5]);
-        greyLabel11.setText(arr[6]);
-        hintLabel1.setText(arr[7]);
-        hintLabel2.setText(arr[8]);
+
+        greyLabel3.setText(game.g3);
+        greyLabel4.setText(game.g4);
+        greyLabel6.setText(game.g6);
+        greyLabel7.setText(game.g7);
+        greyLabel8.setText(game.g8);
+        greyLabel9.setText(game.g9);
+        greyLabel11.setText(game.g11);
+        hintLabel1.setText(String.valueOf(game.h1));
+        hintLabel2.setText(String.valueOf(game.h2));
 
         gamePanel.add(greyLabel1);
         gamePanel.add(greyLabel2);
