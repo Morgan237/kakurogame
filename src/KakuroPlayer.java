@@ -38,6 +38,7 @@ public class KakuroPlayer extends JFrame implements ActionListener {
 
     JTextField[] textFields = {field1,field2,field3,field4,field5,field6,field7};
     Font font = new Font("Verdana",Font.BOLD,15);
+    Games[] games = new Games[10];
 
 
     public KakuroPlayer(){
@@ -55,6 +56,52 @@ public class KakuroPlayer extends JFrame implements ActionListener {
 //            greyLabels[i].setHorizontalAlignment(JLabel.CENTER);
 //            greyLabels[i].setVerticalAlignment(JLabel.CENTER);
 //        }
+
+        Games games1 = new Games();
+
+        String[] arr = games1.initSetter("25\\ ","2\\ ","5\\8"," \\11","5\\ "," \\15"," \\3",8,2);
+        for(int i=0;i<greyLabels.length;i++){
+            greyLabels[i].setForeground(Color.white);
+            greyLabels[i].setBackground(Color.darkGray);
+
+        }
+        greyLabel3.setText(arr[0]);
+        greyLabel4.setText(arr[1]);
+        greyLabel6.setText(arr[2]);
+        greyLabel7.setText(arr[3]);
+        greyLabel8.setText(arr[4]);
+        greyLabel9.setText(arr[5]);
+        greyLabel11.setText(arr[6]);
+        hintLabel1.setText(arr[7]);
+        hintLabel2.setText(arr[8]);
+
+        gamePanel.add(greyLabel1);
+        gamePanel.add(greyLabel2);
+        gamePanel.add(greyLabel3);
+        gamePanel.add(greyLabel4);
+        gamePanel.add(greyLabel5);
+        gamePanel.add(greyLabel6);
+        gamePanel.add(field1);
+        gamePanel.add(field2);
+        gamePanel.add(greyLabel7);
+        gamePanel.add(field3);
+        gamePanel.add(hintLabel1);
+        gamePanel.add(greyLabel8);
+        gamePanel.add(greyLabel9);
+        gamePanel.add(hintLabel2);
+        gamePanel.add(field4);
+        gamePanel.add(field5);
+        gamePanel.add(greyLabel10);
+        gamePanel.add(greyLabel11);
+        gamePanel.add(field5);
+        gamePanel.add(field6);
+
+
+
+
+
+
+
 
         this.add(gamePanel);
         this.setVisible(true);
