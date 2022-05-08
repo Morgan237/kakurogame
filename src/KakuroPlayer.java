@@ -184,6 +184,86 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
             } catch (Exception ex){
                 System.out.println("Error : " + ex);
             }
+        } else if(e.getSource() == field3){
+            try{
+                int field3Value = Integer.parseInt(field3.getText());
+                if(field3Value > 9){
+                    JOptionPane.showMessageDialog(null,"This value cannot be greatter than 9");
+                    field3.requestFocus();
+
+                } else if(Integer.toString(field3Value).equals(hintLabel1.getText())){
+                    JOptionPane.showMessageDialog(null,"Two adjacent fields cannot have thesame value");
+                    field3.requestFocus();
+                }
+            }catch (InputMismatchException ex){
+                System.out.println("Error : " + ex);
+            } catch (Exception ex){
+                System.out.println("Error : " + ex);
+            }
+        } else if(e.getSource() == field4){
+            try{
+                int field4Value = Integer.parseInt(field4.getText());
+                if(field4Value > 9){
+                    JOptionPane.showMessageDialog(null,"This value cannot be greatter than 9");
+                    field4.requestFocus();
+
+                } else if(Integer.toString(field4Value).equals(field5.getText()) || Integer.toString(field4Value).equals(hintLabel2.getText())){
+                    JOptionPane.showMessageDialog(null,"Adjacent fields cannot have thesame value");
+                    field4.requestFocus();
+                }
+            }catch (InputMismatchException ex){
+                System.out.println("Error : " + ex);
+            } catch (Exception ex){
+                System.out.println("Error : " + ex);
+            }
+        } else if(e.getSource() == field5){
+            try{
+                int field5Value = Integer.parseInt(field5.getText());
+                if(field5Value > 9){
+                    JOptionPane.showMessageDialog(null,"This value cannot be greatter than 9");
+                    field5.requestFocus();
+
+                } else if(Integer.toString(field5Value).equals(field4.getText()) || Integer.toString(field5Value).equals(hintLabel2.getText())){
+                    JOptionPane.showMessageDialog(null,"Adjacent fields cannot have thesame value");
+                    field5.requestFocus();
+                }
+            }catch (InputMismatchException ex){
+                System.out.println("Error : " + ex);
+            } catch (Exception ex){
+                System.out.println("Error : " + ex);
+            }
+        } else if(e.getSource() == field6){
+            try{
+                int field6Value = Integer.parseInt(field6.getText());
+                if(field6Value > 9){
+                    JOptionPane.showMessageDialog(null,"This value cannot be greatter than 9");
+                    field6.requestFocus();
+
+                } else if(Integer.toString(field6Value).equals(field7.getText())){
+                    JOptionPane.showMessageDialog(null,"Two adjacent fields cannot have thesame value");
+                    field6.requestFocus();
+                }
+            }catch (InputMismatchException ex){
+                System.out.println("Error : " + ex);
+            } catch (Exception ex){
+                System.out.println("Error : " + ex);
+            }
+        } else if(e.getSource() == field7){
+            try{
+                int field7Value = Integer.parseInt(field7.getText());
+                if(field7Value > 9){
+                    JOptionPane.showMessageDialog(null,"This value cannot be greatter than 9");
+                    field7.requestFocus();
+
+                } else if(Integer.toString(field7Value).equals(field7.getText())){
+                    JOptionPane.showMessageDialog(null,"Two adjacent fields cannot have thesame value");
+                    field7.requestFocus();
+                }
+            }catch (InputMismatchException ex){
+                System.out.println("Error : " + ex);
+            } catch (Exception ex){
+                System.out.println("Error : " + ex);
+            }
         }
     }
 
