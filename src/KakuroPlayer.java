@@ -8,16 +8,16 @@ import java.util.InputMismatchException;
 
 public class KakuroPlayer extends JFrame implements ActionListener, FocusListener {
 
-    JLabel greyLabel1 = new JLabel("---");
-    JLabel greyLabel2 = new JLabel("---");
+    JLabel greyLabel1 = new JLabel("");
+    JLabel greyLabel2 = new JLabel("");
     JLabel greyLabel3 = new JLabel("---");
     JLabel greyLabel4 = new JLabel("---");
-    JLabel greyLabel5 = new JLabel("---");
+    JLabel greyLabel5 = new JLabel("");
     JLabel greyLabel6 = new JLabel("---");
     JLabel greyLabel7 = new JLabel("---");
     JLabel greyLabel8 = new JLabel("---");
     JLabel greyLabel9 = new JLabel("---");
-    JLabel greyLabel10 = new JLabel("---");
+    JLabel greyLabel10 = new JLabel("");
     JLabel greyLabel11 = new JLabel("---");
 
     JLabel hintLabel1 = new JLabel();
