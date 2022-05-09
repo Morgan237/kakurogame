@@ -78,7 +78,7 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
         gamePanel = new JPanel(); // Un JPanel pour retenir toutes les cases
         gamePanel.setLayout(new GridLayout(5,4)); //Un gridLayout sur le JPanel pour donner la forme
 
-//        Des instances de la classe game qui contient toutes le informations pour une partie donnee
+//        Des instances de la classe game qui contiennent toutes le informations pour une partie donnee
         game1.makeGame("25\\--","02\\--","05\\08","--\\11","05\\--","--\\15","--\\03",
                 8,2,6,2,3,9,4,2,1);
         game2.makeGame("17\\--","08\\--","11\\15","--\\07","09\\--","--\\12","--\\11",
@@ -220,6 +220,7 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
                     textFields[i].setFocusable(true);
                     textFields[i].setText("");
                 }
+                field1.requestFocus();
 
             }
         }
@@ -383,6 +384,9 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
 
     public void check(){
 //        --------METHODE POUR VERIFIER LA VALIDITE DE LA SOLUTION PROPOSEE---------------
+
+
+
         if(Integer.parseInt(field1.getText()) == tempGame.res1 && Integer.parseInt(field2.getText()) == tempGame.res2
             && Integer.parseInt(field3.getText()) == tempGame.res3 && Integer.parseInt(field4.getText()) == tempGame.res4
             && Integer.parseInt(field5.getText()) == tempGame.res5 && Integer.parseInt(field6.getText()) == tempGame.res6

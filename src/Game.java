@@ -1,20 +1,6 @@
 public class Game {
-    String g3;
-    String g4;
-    String g6;
-    String g7;
-    String g8;
-    String g9;
-    String g11;
-    int h1;
-    int h2;
-    int res1;
-    int res2;
-    int res3;
-    int res4;
-    int res5;
-    int res6;
-    int res7;
+    String g3,g4,g6,g7,g8,g9,g11;
+    int h1,h2,res1,res2,res3,res4,res5,res6,res7;
 
     public Game makeGame(String g3, String g4, String g6, String g7, String g8, String g9, String g11, int h1, int h2,int res1,
                          int res2,int res3,int res4,int res5,int res6,int res7) {
