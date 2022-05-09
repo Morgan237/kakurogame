@@ -83,12 +83,12 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
                 8,2,6,2,3,9,4,2,1);
         game2.makeGame("17\\--","08\\--","11\\15","--\\07","09\\--","--\\12","--\\11",
                 5,9,7,8,2,1,2,4,7);
-        game3.makeGame("25\\--","01\\--","14\\10","--\\14","11\\--","--\\18","--\\09",
-                9,9,9,1,5,2,7,5,4);
-        game4.makeGame("09\\--","09\\--","15\\16","--\\06","08\\--","--\\12","--\\07",
-                0,9,7,9,6,2,1,0,7);
-        game5.makeGame("21\\--","05\\--","11\\11","--\\08","02\\--","--\\18","--\\02",
-                6,9,6,5,2,7,2,2,0);
+        game3.makeGame("24\\--","01\\--","14\\10","--\\14","11\\--","--\\18","--\\09",
+                9,9,8,1,5,2,7,5,4);
+        game4.makeGame("18\\--","09\\--","15\\16","--\\06","08\\--","--\\12","--\\07",
+                9,9,7,9,6,2,1,0,7);
+        game5.makeGame("20\\--","05\\--","11\\11","--\\08","02\\--","--\\18","--\\02",
+                6,9,5,5,2,7,2,2,0);
         game6.makeGame("17\\--","06\\--","13\\07","--\\11","11\\--","--\\18","--\\11",
                 2,4,1,6,9,5,9,1,2);
 
@@ -187,7 +187,6 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
         } else if(e.getSource() == newGame){
 //            ------JOUER UNE AUTRE PARTIE------
             start();
-            field1.requestFocus();
         } else if(e.getSource() == solutionItem){
 //            ----------AFFICHER LA SOLUTION----------
             if(reponse == false){
@@ -197,7 +196,6 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
                     textFields[i].setFont(new Font("Verdana",Font.BOLD,30));
                     textFields[i].setHorizontalAlignment(JTextField.CENTER);
                     textFields[i].setBorder(BorderFactory.createLineBorder(Color.lightGray));
-//                    textFields[i].addFocusListener(this);
                     textFields[i].setForeground(Color.green);
                     textFields[i].setFocusable(false);
                 }
@@ -231,6 +229,9 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
 
     }
 //----------------------VERIFIER LES CONDITIONS POUR LES VALEURS ENTRER-------------------------------------
+//    Cet-a-dire verifier que
+//    --> Les valeurs dans les cases n'excedent pas 9
+//    --> Les colonnes et lignes contigues n'ont pas les memes valeurs
     @Override
     public void focusLost(FocusEvent e) {
         if(e.getSource() == field1){
@@ -240,8 +241,9 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
                     JOptionPane.showMessageDialog(null,"Cette valeur ne peut pas etre superieure au chiffre 9");
                     field1.requestFocus();
 
-                } else if(Integer.toString(field1Value).equals(field2.getText())){
-                    JOptionPane.showMessageDialog(null,"Deux cases sur la meme rangee ne peuvent avoir la meme valeur");
+                } else if(Integer.toString(field1Value).equals(field2.getText()) || Integer.toString(field1Value).equals(hintLabel1.getText())
+                        || Integer.toString(field1Value).equals(field4.getText()) || Integer.toString(field1Value).equals(field6.getText())){
+                    JOptionPane.showMessageDialog(null,"Les colonnes ou lignes contiguës ne peuvent contenir le meme nombre!");
                     field1.requestFocus();
                 }
             }catch (NumberFormatException ex){
@@ -262,7 +264,7 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
                     field2.requestFocus();
 
                 } else if(Integer.toString(field2Value).equals(field1.getText())){
-                    JOptionPane.showMessageDialog(null,"Deux cases sur la meme rangee ne peuvent avoir la meme valeur");
+                    JOptionPane.showMessageDialog(null,"Les colonnes ou lignes contiguës ne peuvent contenir le meme nombre!");
                     field2.requestFocus();
                 }
             }catch (NumberFormatException ex){
@@ -282,7 +284,7 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
                     JOptionPane.showMessageDialog(null,"Cette valeur ne peut pas etre superieure au chiffre 9");
                     field3.requestFocus();
 
-                } else if(Integer.toString(field3Value).equals(hintLabel1.getText())){
+                } else if(Integer.toString(field3Value).equals(hintLabel1.getText()) || Integer.toString(field3Value).equals(hintLabel2.getText())){
                     JOptionPane.showMessageDialog(null,"Deux cases sur la meme rangee ne peuvent avoir la meme valeur");
                     field3.requestFocus();
                 }
@@ -303,8 +305,11 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
                     JOptionPane.showMessageDialog(null,"Cette valeur ne peut pas etre superieure au chiffre 9");
                     field4.requestFocus();
 
-                } else if(Integer.toString(field4Value).equals(field5.getText()) || Integer.toString(field4Value).equals(hintLabel2.getText())){
-                    JOptionPane.showMessageDialog(null,"Deux cases sur la meme rangee ne peuvent avoir la meme valeur");
+                } else if(Integer.toString(field4Value).equals(field5.getText()) || Integer.toString(field4Value).equals(hintLabel2.getText()) ||
+                        Integer.toString(field4Value).equals(hintLabel1.getText()) || Integer.toString(field4Value).equals(field1.getText())
+                        || Integer.toString(field4Value).equals(field6.getText())){
+
+                    JOptionPane.showMessageDialog(null,"Les colonnes ou lignes contiguës ne peuvent contenir le meme nombre!");
                     field4.requestFocus();
                 }
             }catch (NumberFormatException ex){
@@ -324,8 +329,10 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
                     JOptionPane.showMessageDialog(null,"Cette valeur ne peut pas etre superieure au chiffre 9");
                     field5.requestFocus();
 
-                } else if(Integer.toString(field5Value).equals(field4.getText()) || Integer.toString(field5Value).equals(hintLabel2.getText())){
-                    JOptionPane.showMessageDialog(null,"Deux cases sur la meme rangee ne peuvent avoir la meme valeur");
+                } else if(Integer.toString(field5Value).equals(field4.getText()) || Integer.toString(field5Value).equals(hintLabel2.getText()) ||
+                        Integer.toString(field5Value).equals(field7.getText())){
+
+                    JOptionPane.showMessageDialog(null,"Les colonnes ou lignes contiguës ne peuvent contenir le meme nombre!");
                     field5.requestFocus();
                 }
             }catch (NumberFormatException ex){
@@ -345,8 +352,10 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
                     JOptionPane.showMessageDialog(null,"Cette valeur ne peut pas etre superieure au chiffre 9");
                     field6.requestFocus();
 
-                } else if(Integer.toString(field6Value).equals(field7.getText())){
-                    JOptionPane.showMessageDialog(null,"Deux cases sur la meme rangee ne peuvent avoir la meme valeur");
+                } else if(Integer.toString(field6Value).equals(field7.getText()) || Integer.toString(field6Value).equals(field4.getText()) ||
+                        Integer.toString(field6Value).equals(hintLabel1.getText()) || Integer.toString(field6Value).equals(field1.getText())){
+
+                    JOptionPane.showMessageDialog(null,"Les colonnes ou lignes contiguës ne peuvent contenir le meme nombre!");
                     field6.requestFocus();
                 }
             }catch (NumberFormatException ex){
@@ -366,8 +375,9 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
                     JOptionPane.showMessageDialog(null,"Cette valeur ne peut pas etre superieure au chiffre 9");
                     field7.requestFocus();
 
-                } else if(Integer.toString(field7Value).equals(field6.getText())){
-                    JOptionPane.showMessageDialog(null,"Deux cases sur la meme rangee ne peuvent avoir la meme valeur");
+                } else if(Integer.toString(field7Value).equals(field6.getText()) || Integer.toString(field7Value).equals(field5.getText())){
+
+                    JOptionPane.showMessageDialog(null,"Les colonnes ou lignes contiguës ne peuvent contenir le meme nombre!");
                     field7.requestFocus();
                 }
             }catch (NumberFormatException ex){
@@ -410,7 +420,7 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
         greyLabel11.setText(tempGame.g11);
         hintLabel1.setText(String.valueOf(tempGame.h1));
         hintLabel2.setText(String.valueOf(tempGame.h2));
-
+        field1.requestFocus();
 
         for(int i=0;i<textFields.length;i++){
           textFields[i].setText("");
