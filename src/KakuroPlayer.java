@@ -41,6 +41,8 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
     JMenuItem newGame;
     JMenuItem solutionItem;
 
+
+
     JPanel gamePanel;
 
 //    Un tableau pour contenir tout les greyLabels pour pouvoir facilement iterer entre eux
@@ -370,7 +372,7 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
             && Integer.parseInt(field5.getText()) == game1.res5 && Integer.parseInt(field6.getText()) == game1.res6
             && Integer.parseInt(field7.getText()) == game1.res7){
 
-            JOptionPane.showMessageDialog(null,"Felicitations! Vous avez ganer.","Success",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Felicitations! Vous avez gagner.","Success",JOptionPane.INFORMATION_MESSAGE);
 
         } else {
             JOptionPane.showMessageDialog(this,"Dommage!La solution est fausse.\n Essayez encore","Essayez encore",JOptionPane.ERROR_MESSAGE);
