@@ -1,12 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
+import java.awt.event.*;
 import java.util.InputMismatchException;
 
-public class KakuroPlayer extends JFrame implements ActionListener, FocusListener {
+public class KakuroPlayer extends JFrame implements ActionListener, FocusListener, WindowListener {
 
 //    Les greyLabels seront les cases non modifiables
     JLabel greyLabel1 = new JLabel("");
@@ -35,13 +32,11 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
     JTextField field7 = new JTextField();
 
 //    La barre de menu au dessus
-    JMenuBar menuBar;
-    JMenu fileMenu;
-    JMenuItem checker;
-    JMenuItem newGame;
-    JMenuItem solutionItem;
-
-
+    JMenuBar menuBar; //Barre de menu
+    JMenu fileMenu; // le menu fichier
+    JMenuItem checker; // fonction pour verifier si les reponses proposee sont exactes
+    JMenuItem newGame; // fonction pour lancer une autre partie
+    JMenuItem solutionItem; //fonction pour montrer la solution
 
     JPanel gamePanel;
 
@@ -57,9 +52,20 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
 
     //    Un tableau pour contenir tout les textfields pour pouvoir facilement iterer entre eux
     JTextField[] textFields = {field1,field2,field3,field4,field5,field6,field7};
-    Font font = new Font("Verdana",Font.BOLD,15);
-    Game[] games = new Game[10];
+    Font font = new Font("Verdana",Font.BOLD,15); // la police pour toutes les cases
+
+    Game[] games = new Game[10]; // un tableau pour contenir toutes les instances de la classe Game pour pouvoir
+                                    // choisir une partie à jouer aléatoirement
+
+//    Instances de la classe Game
+
+    Game tempGame; // La partie qui sera en train d'etre joue à un l'instant
     Game game1 = new Game();
+    Game game2 = new Game();
+    Game game3 = new Game();
+    Game game4 = new Game();
+    Game game5 = new Game();
+    Game game6 = new Game();
 
 //    ----------------------------------------- CONSTRUCTOR -----------------------------------------------------------------
 //    Creation de la fenetre
@@ -73,8 +79,27 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
         gamePanel.setLayout(new GridLayout(5,4)); //Un gridLayout sur le JPanel pour donner la forme
 
 //        Des instances de la classe game qui contient toutes le informations pour une partie donnee
-        game1.makeGame("25\\--","2\\--","5\\8","--\\11","5\\--","--\\15","--\\3",
+        game1.makeGame("25\\--","02\\--","05\\08","--\\11","05\\--","--\\15","--\\03",
                 8,2,6,2,3,9,4,2,1);
+        game2.makeGame("17\\--","08\\--","11\\15","--\\07","09\\--","--\\12","--\\11",
+                5,9,7,8,2,1,2,4,7);
+        game3.makeGame("25\\--","01\\--","14\\10","--\\14","11\\--","--\\18","--\\09",
+                9,9,9,1,5,2,7,5,4);
+        game4.makeGame("09\\--","09\\--","15\\16","--\\06","08\\--","--\\12","--\\07",
+                0,9,7,9,6,2,1,0,7);
+        game5.makeGame("21\\--","05\\--","11\\11","--\\08","02\\--","--\\18","--\\02",
+                6,9,6,5,2,7,2,2,0);
+        game6.makeGame("17\\--","06\\--","13\\07","--\\11","11\\--","--\\18","--\\11",
+                2,4,1,6,9,5,9,1,2);
+
+        games[0] = game1;
+        games[1] = game2;
+        games[2] = game3;
+        games[3] = game4;
+        games[4] = game5;
+        games[5] = game6;
+
+         start();
 
         for(int i=0;i<greyLabels.length;i++){
 //            Bien formatter les greyLabels(Les cases non modifiables)
@@ -110,16 +135,6 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
         }
 
         //Ajouter toutes les cases dans le JPanel gamePanel dans l'order suivant:
-
-        greyLabel3.setText(game1.g3);
-        greyLabel4.setText(game1.g4);
-        greyLabel6.setText(game1.g6);
-        greyLabel7.setText(game1.g7);
-        greyLabel8.setText(game1.g8);
-        greyLabel9.setText(game1.g9);
-        greyLabel11.setText(game1.g11);
-        hintLabel1.setText(String.valueOf(game1.h1));
-        hintLabel2.setText(String.valueOf(game1.h2));
 
         gamePanel.add(greyLabel1);
         gamePanel.add(greyLabel2);
@@ -171,7 +186,7 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
             check();
         } else if(e.getSource() == newGame){
 //            ------JOUER UNE AUTRE PARTIE------
-
+            start();
         } else if(e.getSource() == solutionItem){
 //            ----------AFFICHER LA SOLUTION----------
             if(reponse == false){
@@ -185,13 +200,13 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
                     textFields[i].setForeground(Color.green);
                     textFields[i].setFocusable(false);
                 }
-                field1.setText(String.valueOf(game1.res1));
-                field2.setText(String.valueOf(game1.res2));
-                field3.setText(String.valueOf(game1.res3));
-                field4.setText(String.valueOf(game1.res4));
-                field5.setText(String.valueOf(game1.res5));
-                field6.setText(String.valueOf(game1.res6));
-                field7.setText(String.valueOf(game1.res7));
+                field1.setText(String.valueOf(tempGame.res1));
+                field2.setText(String.valueOf(tempGame.res2));
+                field3.setText(String.valueOf(tempGame.res3));
+                field4.setText(String.valueOf(tempGame.res4));
+                field5.setText(String.valueOf(tempGame.res5));
+                field6.setText(String.valueOf(tempGame.res6));
+                field7.setText(String.valueOf(tempGame.res7));
             } else {
                 reponse = false;
                 solutionItem.setText("Montrer les reponses");
@@ -377,5 +392,53 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
         } else {
             JOptionPane.showMessageDialog(this,"Dommage!La solution est fausse.\n Essayez encore","Essayez encore",JOptionPane.ERROR_MESSAGE);
         }
+    }
+
+    public void start(){
+        tempGame = games[((int)Math.floor(Math.random() * 10))];
+        greyLabel3.setText(tempGame.g3);
+        greyLabel4.setText(tempGame.g4);
+        greyLabel6.setText(tempGame.g6);
+        greyLabel7.setText(tempGame.g7);
+        greyLabel8.setText(tempGame.g8);
+        greyLabel9.setText(tempGame.g9);
+        greyLabel11.setText(tempGame.g11);
+        hintLabel1.setText(String.valueOf(tempGame.h1));
+        hintLabel2.setText(String.valueOf(tempGame.h2));
+    }
+
+    @Override
+    public void windowOpened(WindowEvent windowEvent) {
+        start();
+    }
+
+    @Override
+    public void windowClosing(WindowEvent windowEvent) {
+
+    }
+
+    @Override
+    public void windowClosed(WindowEvent windowEvent) {
+
+    }
+
+    @Override
+    public void windowIconified(WindowEvent windowEvent) {
+
+    }
+
+    @Override
+    public void windowDeiconified(WindowEvent windowEvent) {
+
+    }
+
+    @Override
+    public void windowActivated(WindowEvent windowEvent) {
+
+    }
+
+    @Override
+    public void windowDeactivated(WindowEvent windowEvent) {
+
     }
 }
