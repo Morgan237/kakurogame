@@ -1,7 +1,10 @@
 public class Game {
-    String g3,g4,g6,g7,g8,g9,g11;
-    int h1,h2,res1,res2,res3,res4,res5,res6,res7;
+//    Classe de jeu Game qui contient toutes les informations pour une partie donee
+    String g3,g4,g6,g7,g8,g9,g11; // Valeurs des cases non-modifiables;
+    int h1,h2; // valeurs des cases d'indice pour une partie donee
+    int res1,res2,res3,res4,res5,res6,res7; // Valeurs des reponses pour une partie donee
 
+//    Methode pour tout initier
     public Game makeGame(String g3, String g4, String g6, String g7, String g8, String g9, String g11, int h1, int h2,int res1,
                          int res2,int res3,int res4,int res5,int res6,int res7) {
         this.g3 = g3;

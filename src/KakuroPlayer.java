@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.InputMismatchException;
 
-public class KakuroPlayer extends JFrame implements ActionListener, FocusListener, WindowListener {
+public class KakuroPlayer extends JFrame implements ActionListener, FocusListener {
 
 //    Les greyLabels seront les cases non modifiables
     JLabel greyLabel1 = new JLabel("");
@@ -178,7 +178,7 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
         this.setVisible(true);
     }
 //------------------------------------------ACTION PERFORMED METHOD--------------------------------------------------
-//    Methode pour verifirer que la solution proposee est correcte
+//    Methode pour verifier que la solution proposee est correcte
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == checker){
@@ -410,6 +410,8 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
     }
 
     public void start(){
+        //Methode pour choisir un objet Game aleratoirement et s'en servir pour une partie.
+
         tempGame = games[(int)Math.floor(Math.random() * 6)];
         greyLabel3.setText(tempGame.g3);
         greyLabel4.setText(tempGame.g4);
@@ -425,40 +427,5 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
         for(int i=0;i<textFields.length;i++){
           textFields[i].setText("");
         }
-    }
-
-    @Override
-    public void windowOpened(WindowEvent windowEvent) {
-        start();
-    }
-
-    @Override
-    public void windowClosing(WindowEvent windowEvent) {
-
-    }
-
-    @Override
-    public void windowClosed(WindowEvent windowEvent) {
-
-    }
-
-    @Override
-    public void windowIconified(WindowEvent windowEvent) {
-
-    }
-
-    @Override
-    public void windowDeiconified(WindowEvent windowEvent) {
-
-    }
-
-    @Override
-    public void windowActivated(WindowEvent windowEvent) {
-
-    }
-
-    @Override
-    public void windowDeactivated(WindowEvent windowEvent) {
-
     }
 }
