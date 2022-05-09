@@ -99,7 +99,7 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
         games[4] = game5;
         games[5] = game6;
 
-         start();
+        start();
 
         for(int i=0;i<greyLabels.length;i++){
 //            Bien formatter les greyLabels(Les cases non modifiables)
@@ -187,6 +187,7 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
         } else if(e.getSource() == newGame){
 //            ------JOUER UNE AUTRE PARTIE------
             start();
+            field1.requestFocus();
         } else if(e.getSource() == solutionItem){
 //            ----------AFFICHER LA SOLUTION----------
             if(reponse == false){
@@ -382,10 +383,10 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
 
     public void check(){
 //        --------METHODE POUR VERIFIER LA VALIDITE DE LA SOLUTION PROPOSEE---------------
-        if(Integer.parseInt(field1.getText()) == game1.res1 && Integer.parseInt(field2.getText()) == game1.res2
-            && Integer.parseInt(field3.getText()) == game1.res3 && Integer.parseInt(field4.getText()) == game1.res4
-            && Integer.parseInt(field5.getText()) == game1.res5 && Integer.parseInt(field6.getText()) == game1.res6
-            && Integer.parseInt(field7.getText()) == game1.res7){
+        if(Integer.parseInt(field1.getText()) == tempGame.res1 && Integer.parseInt(field2.getText()) == tempGame.res2
+            && Integer.parseInt(field3.getText()) == tempGame.res3 && Integer.parseInt(field4.getText()) == tempGame.res4
+            && Integer.parseInt(field5.getText()) == tempGame.res5 && Integer.parseInt(field6.getText()) == tempGame.res6
+            && Integer.parseInt(field7.getText()) == tempGame.res7){
 
             JOptionPane.showMessageDialog(null,"Felicitations! Vous avez gagner.","Success",JOptionPane.INFORMATION_MESSAGE);
 
@@ -395,7 +396,7 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
     }
 
     public void start(){
-        tempGame = games[((int)Math.floor(Math.random() * 10))];
+        tempGame = games[(int)Math.floor(Math.random() * 6)];
         greyLabel3.setText(tempGame.g3);
         greyLabel4.setText(tempGame.g4);
         greyLabel6.setText(tempGame.g6);
@@ -405,6 +406,11 @@ public class KakuroPlayer extends JFrame implements ActionListener, FocusListene
         greyLabel11.setText(tempGame.g11);
         hintLabel1.setText(String.valueOf(tempGame.h1));
         hintLabel2.setText(String.valueOf(tempGame.h2));
+
+
+        for(int i=0;i<textFields.length;i++){
+          textFields[i].setText("");
+        }
     }
 
     @Override
